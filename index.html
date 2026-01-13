@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temi — Product Designer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --cream: #FFF8F0;
+            --black: #020309;
+            --accent: #9A275A;
+            --blue: #4A90E2;
+            --green: #2ECC71;
+            --purple: #9B59B6;
+            --gray: #666;
+        }
+
+        body {
+            font-family: "Inconsolata", monospace;
+            background: var(--cream);
+            color: var(--black);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* Navigation */
+        nav {
+            padding: 30px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--cream);
+            z-index: 1000;
+            border-bottom: 2px solid var(--black);
+        }
+
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Space Mono', monospace;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--black);
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 50px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--black);
+            font-size: 16px;
+            font-weight: 600;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            background: var(--green);
+            border-radius: 50%;
+            display: inline-block;
+            animation: pulse 2s infinite;
+            margin-left: 8px;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        /* Hero */
+        .hero {
+            padding: 180px 0 120px;
+            margin-top: 80px;
+        }
+
+        .hero-label {
+            display: inline-block;
+            background: var(--black);
+            color: var(--cream);
+            padding: 8px 20px;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 40px;
+            font-family: 'Space Mono', monospace;
+        }
+
+        .hero h1 {
+            font-size: clamp(60px, 10vw, 140px);
+            font-weight: 900;
+            line-height: 0.95;
+            margin-bottom: 40px;
+            letter-spacing: -4px;
+        }
+
+        .hero h1 .outline {
+            color: var(--accent);
+            /* -webkit-text-stroke: 2px var(--black); */
+        }
+
+        .hero-description {
+            font-size: 24px;
+            max-width: 700px;
+            line-height: 1.6;
+            font-weight: 500;
+            color: var(--gray);
+            margin-bottom: 50px;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 20px 50px;
+            font-size: 18px;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 0;
+            transition: all 0.3s;
+            border: 3px solid var(--black);
+            box-shadow: 8px 8px 0 var(--black);
+        }
+
+        .hero-cta:hover {
+            transform: translate(4px, 4px);
+            box-shadow: 4px 4px 0 var(--black);
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 60px;
+            margin-top: 80px;
+        }
+
+        .stat {
+            border-left: 4px solid var(--black);
+            padding-left: 20px;
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--gray);
+        }
+
+        /* Projects Section */
+        .projects {
+            padding: 100px 0;
+            background: var(--black);
+            color: var(--cream);
+        }
+
+        .section-header {
+            margin-bottom: 80px;
+        }
+
+        .section-number {
+            font-family: 'Space Mono', monospace;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-size: 64px;
+            font-weight: 900;
+            letter-spacing: -2px;
+        }
+
+        .project-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .project-item {
+            padding: 60px 0;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .project-item:hover {
+            background: rgba(255, 255, 255, 0.02);
+            padding-left: 40px;
+            padding-right: 40px;
+            margin-left: -40px;
+            margin-right: -40px;
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .project-number {
+            font-family: 'Space Mono', monospace;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--accent);
+            min-width: 60px;
+        }
+
+        .project-title {
+            font-size: 48px;
+            font-weight: 900;
+            letter-spacing: -1px;
+            flex: 1;
+        }
+
+        .project-year {
+            font-family: 'Space Mono', monospace;
+            font-size: 16px;
+            color: var(--gray);
+        }
+
+        .project-description {
+            font-size: 18px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 25px;
+            margin-left: 60px;
+            max-width: 800px;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-left: 60px;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 20px;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .tag.award {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+            margin-left: 60px;
+        }
+
+        .project-link {
+            color: var(--cream);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 12px 30px;
+            border: 2px solid var(--cream);
+            transition: all 0.3s;
+        }
+
+        .project-link:hover {
+            background: var(--cream);
+            color: var(--black);
+        }
+
+        .project-link.primary {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+        }
+
+        .project-link.primary:hover {
+            background: transparent;
+            color: var(--accent);
+        }
+
+        /* Marquee */
+        .marquee-section {
+            padding: 80px 0;
+            overflow: hidden;
+            background: var(--accent);
+            border-top: 3px solid var(--black);
+            border-bottom: 3px solid var(--black);
+        }
+
+        .marquee {
+            display: flex;
+            animation: scroll 30s linear infinite;
+        }
+
+        .marquee-content {
+            display: flex;
+            gap: 80px;
+            white-space: nowrap;
+            padding-right: 80px;
+        }
+
+        .marquee-item {
+            font-size: 48px;
+            font-weight: 900;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* Contact */
+        .contact {
+            padding: 150px 0;
+            background: var(--cream);
+        }
+
+        .contact-content {
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: clamp(48px, 8vw, 96px);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 50px;
+            letter-spacing: -3px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            margin-top: 60px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            text-align: left;
+        }
+
+        .contact-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--gray);
+            margin-bottom: 10px;
+        }
+
+        .contact-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--black);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .contact-value:hover {
+            color: var(--accent);
+        }
+
+        /* Footer */
+        footer {
+            padding: 50px 0;
+            background: var(--black);
+            color: var(--cream);
+            text-align: center;
+            border-top: 3px solid var(--accent);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .footer-text {
+            font-family: 'Space Mono', monospace;
+            font-size: 14px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .footer-links a {
+            color: var(--cream);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+
+            .container,
+            .nav-content,
+            .footer-content {
+                padding: 0 20px;
+            }
+
+            .hero {
+                padding: 140px 0 80px;
+            }
+
+            .hero h1 {
+                font-size: 48px;
+                letter-spacing: -2px;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+
+            .project-title {
+                font-size: 32px;
+            }
+
+            .project-description,
+            .project-tags,
+            .project-links {
+                margin-left: 0;
+            }
+
+            .project-header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .marquee-item {
+                font-size: 32px;
+            }
+
+            .contact h2 {
+                font-size: 40px;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 40px;
+                align-items: center;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .nav-links {
+                gap: 25px;
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        ::selection {
+            background: var(--accent);
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-content">
+            <div class="logo">TEMI</div>
+            <ul class="nav-links">
+                <li><a href="#work">Work</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><span class="status-dot"></span></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-label">Hi there, I am Temi, a Product Designer</div>
+            <h1>
+                Crafting <br>
+                <span class="outline">digital products </span><br>
+                that actually work
+            </h1>
+            <p class="hero-description">
+                Product designer specializing in complex B2B platforms, fintech applications, and healthcare solutions
+                with a focus on clarity, usability, and systems that scale from zero to production.
+            </p>
+            <a href="#work" class="hero-cta">SEE MY WORK <span style="font-family: 'Comic Sans MS', cursive;">(use a laptop, please)</span> →</a>
+
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-number">8+</div>
+                    <div class="stat-label">Projects Worked on</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">4+</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label">Coffee Consumed</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="marquee-section">
+        <div class="marquee">
+            <div class="marquee-content">
+                <span class="marquee-item">DESIGN</span>
+                <span class="marquee-item">★</span>
+                <span class="marquee-item">SYSTEMS</span>
+                <span class="marquee-item">★</span>
+                <span class="marquee-item">PRODUCT</span>
+                <span class="marquee-item">★</span>
+                <span class="marquee-item">UX/UI</span>
+                <span class="marquee-item">★</span>
+            </div>
+            <div class="marquee-content">
+                <span class="marquee-item">DESIGN</span>
+                <span class="marquee-item">★</span>
+                <span class="marquee-item">SYSTEMS</span>
+                <span class="marquee-item">★</span>
+                <span class="marquee-item">PRODUCT</span>
+                <span class="marquee-item">★</span>
+                <span class="marquee-item">UX/UI</span>
+                <span class="marquee-item">★</span>
+            </div>
+        </div>
+    </div>
+
+    <section class="projects" id="work">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-number">[ 01 ]</div>
+                <h2 class="section-title">SELECTED WORK</h2>
+            </div>
+
+            <div class="project-list">
+                <div class="project-item">
+                    <div class="project-header">
+                        <div class="project-number">01</div>
+                        <h3 class="project-title">Manelens</h3>
+                        <div class="project-year">2025</div>
+                    </div>
+                    <p class="project-description">
+                        Manelens is a dual-platform hair intelligence product with a consumer mobile app and a SaaS
+                        platform for salons and professional stylists. The mobile app helps users understand their hair
+                        and routines, while the salon platform provides CRM, training and certification, inventory &
+                        ingredient analysis, and curated industry insights. Built on consent-based data sharing via Mane
+                        ID, the system enables personalized professional care while keeping users in control of their
+                        data, showcasing my ability to design scalable, multi-sided SaaS products with science-driven
+                        UX.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">B2B SaaS</span>
+                        <span class="tag">Systems Design</span>
+                        <span class="tag">CRM</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://www.figma.com/design/CgokQfyyKY0dis4qTMkWX4/Manelens?node-id=1376-11028&t=TLD3Q6NoH2Q8JoDR-1"
+                            target="_blank" class="project-link primary">VIEW DESIGN →</a>
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <div class="project-header">
+                        <div class="project-number">02</div>
+                        <h3 class="project-title">Carebrij</h3>
+                        <div class="project-year">2025</div>
+                    </div>
+                    <p class="project-description">
+                        Healthcare marketplace connecting patients with medical professionals. Designed end-to-end
+                        booking experience,
+                        provider profiles, and service discovery system.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">Healthcare</span>
+                        <span class="tag">Marketplace</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://www.figma.com/design/96XOxoXd8duFbj0zJGbAIe/Carebrij-Healthcare-Marketplace?node-id=0-1"
+                            target="_blank" class="project-link primary">VIEW DESIGN →</a>
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <div class="project-header">
+                        <div class="project-number">03</div>
+                        <h3 class="project-title">FlurryPay</h3>
+                        <div class="project-year">2024</div>
+                    </div>
+                    <p class="project-description">
+                        Crypto wallet and exchange app focused on simplicity. Made blockchain accessible for beginners
+                        while
+                        maintaining power user features. Buy, sell, swap, and earn digital assets with confidence.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">Fintech</span>
+                        <span class="tag">Crypto</span>
+                        <span class="tag">Mobile</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://www.figma.com/design/6xd6awF0VJbOTRRrxGuLEL/FlurryPay?node-id=488-6929"
+                            target="_blank" class="project-link primary">VIEW DESIGN →</a>
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <div class="project-header">
+                        <div class="project-number">04</div>
+                        <h3 class="project-title">NACOS Payment</h3>
+                        <div class="project-year">2024</div>
+                    </div>
+                    <p class="project-description">
+                        Complete redesign of university dues payment system. Live in production at FUNAAB,
+                        serving thousands of students with faster, clearer payment flow.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">Education</span>
+                        <span class="tag">Live Product</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://nacosfunaab.com.ng/" target="_blank" class="project-link primary">LIVE SITE
+                            →</a>
+                        <a href="https://www.figma.com/design/5tmiMrAdHrbqbqkW87qFcW/NACOS-Payment-Form-Redesign-FUNAAB"
+                            target="_blank" class="project-link">DESIGN FILES</a>
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <div class="project-header">
+                        <div class="project-number">05</div>
+                        <h3 class="project-title">FlexQuest</h3>
+                        <div class="project-year">2024</div>
+                    </div>
+                    <p class="project-description">
+                        Fitness tracking app with social challenges and gamification. Built during Geegpay hackathon.
+                        Won for best design execution and user experience. This mini project won me the
+                        Geegpay-sponsored Hackathon by David Herbert on Twitter. And I really had fun working on this
+                        mini-project
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag award">🏆 HACKATHON WINNER</span>
+                        <span class="tag">Fitness</span>
+                        <span class="tag">Mobile</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://www.figma.com/design/Z0bclICnvpsJeBNzYI6CPn/FlexQuest" target="_blank"
+                            class="project-link primary">VIEW DESIGN →</a>
+                        <a href="https://x.com/DaveyHert/status/1754477068656464297" target="_blank"
+                            class="project-link">PROOF</a>
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <div class="project-header">
+                        <div class="project-number">06</div>
+                        <h3 class="project-title">Employee Attendance</h3>
+                        <div class="project-year">2024</div>
+                    </div>
+                    <p class="project-description">
+                        Role-based management system for tracking employee attendance and records.
+                        Designed for scalability with enterprise-friendly patterns.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">Enterprise</span>
+                        <span class="tag">Dashboard</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://www.figma.com/design/o11NTLOIqEzOJg6OuyZ5n8/Employee-Attendance-Management-System"
+                            target="_blank" class="project-link primary">VIEW DESIGN →</a>
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <div class="project-header">
+                        <div class="project-number">07</div>
+                        <h3 class="project-title">More Work</h3>
+                        <div class="project-year">2023-24</div>
+                    </div>
+                    <p class="project-description">
+                        Collection of side projects, explorations, and experiments. From NerveCen business suite
+                        to various UI concepts and design challenges.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">Experiments</span>
+                        <span class="tag">Various</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://www.figma.com/file/UB2yUW93G4ldGXriwL59w3/SM-UI-Design-Files" target="_blank"
+                            class="project-link primary">VIEW COLLECTION →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-content">
+                <h2>
+                    LET'S MAKE<br>
+                    SOMETHING<br>
+                    GREAT
+                </h2>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-label">Email</div>
+                        <a href="mailto:akinbotetemiloluwa9@gmail.com"
+                            class="contact-value">akinbotetemiloluwa9@gmail.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-label">Phone</div>
+                        <a href="tel:07014016009" class="contact-value">070 1401 6009</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-text">© 2026 TEMI — PRODUCT DESIGNER</div>
+            <div class="footer-links">
+                <a href="#work">Work</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Project hover effect
+        const projectItems = document.querySelectorAll('.project-item');
+        projectItems.forEach(item => {
+            item.addEventListener('mouseenter', function () {
+                this.style.transform = 'translateX(10px)';
+            });
+            item.addEventListener('mouseleave', function () {
+                this.style.transform = 'translateX(0)';
+            });
+        });
+
+        // Intersection observer for fade-in
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        projectItems.forEach((item, index) => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(30px)';
+            item.style.transition = `all 0.6s ease ${index * 0.1}s`;
+            observer.observe(item);
+        });
+
+        // Nav background on scroll
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            const currentScroll = window.pageYOffset;
+
+            if (currentScroll > 100) {
+                nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            } else {
+                nav.style.boxShadow = 'none';
+            }
+
+            lastScroll = currentScroll;
+        });
+    </script>
+</body>
+
+</html>
