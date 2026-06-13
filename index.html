@@ -2,909 +2,1474 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Temi — Product Designer</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap"
-        rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --cream: #FFF8F0;
-            --black: #020309;
-            --accent: #9A275A;
-            --blue: #4A90E2;
-            --green: #2ECC71;
-            --purple: #9B59B6;
-            --gray: #666;
-        }
-
-        body {
-            font-family: "Inconsolata", monospace;
-            background: var(--cream);
-            color: var(--black);
-            line-height: 1.5;
-            overflow-x: hidden;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 40px;
-        }
-
-        /* Navigation */
-        nav {
-            padding: 30px 0;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: var(--cream);
-            z-index: 1000;
-            border-bottom: 2px solid var(--black);
-        }
-
-        .nav-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-family: 'Space Mono', monospace;
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--black);
-            letter-spacing: -1px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 50px;
-            list-style: none;
-            align-items: center;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--black);
-            font-size: 16px;
-            font-weight: 600;
-            position: relative;
-            transition: all 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent);
-        }
-
-        .status-dot {
-            width: 10px;
-            height: 10px;
-            background: var(--green);
-            border-radius: 50%;
-            display: inline-block;
-            animation: pulse 2s infinite;
-            margin-left: 8px;
-        }
-
-        @keyframes pulse {
-
-            0%,
-            100% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: 0.5;
-            }
-        }
-
-        /* Hero */
-        .hero {
-            padding: 180px 0 120px;
-            margin-top: 80px;
-        }
-
-        .hero-label {
-            display: inline-block;
-            background: var(--black);
-            color: var(--cream);
-            padding: 8px 20px;
-            font-size: 14px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 40px;
-            font-family: 'Space Mono', monospace;
-        }
-
-        .hero h1 {
-            font-size: clamp(60px, 10vw, 140px);
-            font-weight: 900;
-            line-height: 0.95;
-            margin-bottom: 40px;
-            letter-spacing: -4px;
-        }
-
-        .hero h1 .outline {
-            color: var(--accent);
-            /* -webkit-text-stroke: 2px var(--black); */
-        }
-
-        .hero-description {
-            font-size: 24px;
-            max-width: 700px;
-            line-height: 1.6;
-            font-weight: 500;
-            color: var(--gray);
-            margin-bottom: 50px;
-        }
-
-        .hero-cta {
-            display: inline-block;
-            background: var(--accent);
-            color: white;
-            padding: 20px 50px;
-            font-size: 18px;
-            font-weight: 700;
-            text-decoration: none;
-            border-radius: 0;
-            transition: all 0.3s;
-            border: 3px solid var(--black);
-            box-shadow: 8px 8px 0 var(--black);
-        }
-
-        .hero-cta:hover {
-            transform: translate(4px, 4px);
-            box-shadow: 4px 4px 0 var(--black);
-        }
-
-        .hero-stats {
-            display: flex;
-            gap: 60px;
-            margin-top: 80px;
-        }
-
-        .stat {
-            border-left: 4px solid var(--black);
-            padding-left: 20px;
-        }
-
-        .stat-number {
-            font-size: 48px;
-            font-weight: 900;
-            line-height: 1;
-            margin-bottom: 8px;
-        }
-
-        .stat-label {
-            font-size: 14px;
-            text-transform: uppercase;
-            font-weight: 700;
-            letter-spacing: 1px;
-            color: var(--gray);
-        }
-
-        /* Projects Section */
-        .projects {
-            padding: 100px 0;
-            background: var(--black);
-            color: var(--cream);
-        }
-
-        .section-header {
-            margin-bottom: 80px;
-        }
-
-        .section-number {
-            font-family: 'Space Mono', monospace;
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--accent);
-            margin-bottom: 15px;
-        }
-
-        .section-title {
-            font-size: 64px;
-            font-weight: 900;
-            letter-spacing: -2px;
-        }
-
-        .project-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-        }
-
-        .project-item {
-            padding: 60px 0;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .project-item:hover {
-            background: rgba(255, 255, 255, 0.02);
-            padding-left: 40px;
-            padding-right: 40px;
-            margin-left: -40px;
-            margin-right: -40px;
-        }
-
-        .project-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 20px;
-        }
-
-        .project-number {
-            font-family: 'Space Mono', monospace;
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--accent);
-            min-width: 60px;
-        }
-
-        .project-title {
-            font-size: 48px;
-            font-weight: 900;
-            letter-spacing: -1px;
-            flex: 1;
-        }
-
-        .project-year {
-            font-family: 'Space Mono', monospace;
-            font-size: 16px;
-            color: var(--gray);
-        }
-
-        .project-description {
-            font-size: 18px;
-            line-height: 1.7;
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 25px;
-            margin-left: 60px;
-            max-width: 800px;
-        }
-
-        .project-tags {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            margin-left: 60px;
-        }
-
-        .tag {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 8px 20px;
-            font-size: 13px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .tag.award {
-            background: var(--accent);
-            border-color: var(--accent);
-            color: white;
-        }
-
-        .project-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 25px;
-            margin-left: 60px;
-        }
-
-        .project-link {
-            color: var(--cream);
-            text-decoration: none;
-            font-size: 16px;
-            font-weight: 600;
-            padding: 12px 30px;
-            border: 2px solid var(--cream);
-            transition: all 0.3s;
-        }
-
-        .project-link:hover {
-            background: var(--cream);
-            color: var(--black);
-        }
-
-        .project-link.primary {
-            background: var(--accent);
-            border-color: var(--accent);
-            color: white;
-        }
-
-        .project-link.primary:hover {
-            background: transparent;
-            color: var(--accent);
-        }
-
-        /* Marquee */
-        .marquee-section {
-            padding: 80px 0;
-            overflow: hidden;
-            background: var(--accent);
-            border-top: 3px solid var(--black);
-            border-bottom: 3px solid var(--black);
-        }
-
-        .marquee {
-            display: flex;
-            animation: scroll 30s linear infinite;
-        }
-
-        .marquee-content {
-            display: flex;
-            gap: 80px;
-            white-space: nowrap;
-            padding-right: 80px;
-        }
-
-        .marquee-item {
-            font-size: 48px;
-            font-weight: 900;
-            color: white;
-            text-transform: uppercase;
-            letter-spacing: -1px;
-        }
-
-        @keyframes scroll {
-            0% {
-                transform: translateX(0);
-            }
-
-            100% {
-                transform: translateX(-50%);
-            }
-        }
-
-        /* Contact */
-        .contact {
-            padding: 150px 0;
-            background: var(--cream);
-        }
-
-        .contact-content {
-            text-align: center;
-        }
-
-        .contact h2 {
-            font-size: clamp(48px, 8vw, 96px);
-            font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 50px;
-            letter-spacing: -3px;
-        }
-
-        .contact-info {
-            display: flex;
-            justify-content: center;
-            gap: 80px;
-            margin-top: 60px;
-            flex-wrap: wrap;
-        }
-
-        .contact-item {
-            text-align: left;
-        }
-
-        .contact-label {
-            font-size: 12px;
-            text-transform: uppercase;
-            font-weight: 700;
-            letter-spacing: 2px;
-            color: var(--gray);
-            margin-bottom: 10px;
-        }
-
-        .contact-value {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--black);
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-
-        .contact-value:hover {
-            color: var(--accent);
-        }
-
-        /* Footer */
-        footer {
-            padding: 50px 0;
-            background: var(--black);
-            color: var(--cream);
-            text-align: center;
-            border-top: 3px solid var(--accent);
-        }
-
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 40px;
-        }
-
-        .footer-text {
-            font-family: 'Space Mono', monospace;
-            font-size: 14px;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 30px;
-        }
-
-        .footer-links a {
-            color: var(--cream);
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: var(--accent);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-
-            .container,
-            .nav-content,
-            .footer-content {
-                padding: 0 20px;
-            }
-
-            .hero {
-                padding: 140px 0 80px;
-            }
-
-            .hero h1 {
-                font-size: 48px;
-                letter-spacing: -2px;
-            }
-
-            .hero-stats {
-                flex-direction: column;
-                gap: 30px;
-            }
-
-            .section-title {
-                font-size: 36px;
-            }
-
-            .project-title {
-                font-size: 32px;
-            }
-
-            .project-description,
-            .project-tags,
-            .project-links {
-                margin-left: 0;
-            }
-
-            .project-header {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            .marquee-item {
-                font-size: 32px;
-            }
-
-            .contact h2 {
-                font-size: 40px;
-            }
-
-            .contact-info {
-                flex-direction: column;
-                gap: 40px;
-                align-items: center;
-            }
-
-            .footer-content {
-                flex-direction: column;
-                gap: 20px;
-            }
-
-            .nav-links {
-                gap: 25px;
-            }
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        ::selection {
-            background: var(--accent);
-            color: white;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Temi — Product Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300;1,8..60,400&family=Figtree:wght@300;400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #FFFFFF;
+      --line: #E2E2E2;
+      --img-bg: #F0F0F0;
+      --hero-paper: #FFFFFF;
+      --hero-cream: #F7F7F7;
+      --text: #151210;
+      --accent: #7A4E3E;
+      --muted: #5F5952;
+      --green: #3C7B64;
+      --hero-ink: #1A1715;
+      --hero-blue: #2F5BFF;
+      --hero-blue-soft: #D9E1FF;
+      --hero-gray: #8A8680;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Source Serif 4', Georgia, serif;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      animation: bodyIn 0.35s ease both;
+    }
+
+    @keyframes bodyIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    ::selection {
+      background: rgba(198, 50, 101, 0.13);
+    }
+
+    .wrap {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* ── PAGE-LOAD ANIMATIONS ─────────────── */
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ── HERO ────────────────────────────── */
+    .hero {
+      padding: 10px 10px 0;
+    }
+
+    .hero-shell {
+      position: relative;
+      min-height: calc(100vh - 10px);
+      border: 2px solid rgba(25, 21, 18, 0.9);
+      border-radius: 18px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 18% 20%, rgba(255, 255, 255, 0.75), transparent 22%),
+        radial-gradient(circle at 86% 86%, rgba(47, 91, 255, 0.08), transparent 16%),
+        linear-gradient(180deg, #FFFFFF 0%, #F7F7F7 100%);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.32);
+      color: var(--hero-ink);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hero-shell::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(0deg, rgba(25, 21, 18, 0.03) 0 1px, transparent 1px 4px),
+        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.11) 0 1px, transparent 1px 6px);
+      opacity: 0.5;
+      mix-blend-mode: soft-light;
+      pointer-events: none;
+    }
+
+    /* ── NAV ─────────────────────────────── */
+    nav {
+      position: relative;
+      z-index: 2;
+      border-bottom: 2px solid rgba(26, 23, 21, 0.88);
+      background: transparent;
+      animation: none;
+    }
+
+    .nav-inner {
+      max-width: none;
+      margin: 0;
+      padding: 24px 40px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Profile picture placeholder */
+    .avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: #EAE7E3;
+      border: 1.5px dashed #C8C4BF;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      cursor: default;
+    }
+
+    /* When an <img> is added inside .avatar, it fills the circle */
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Hide fallback initial once real image loads */
+    .avatar img~.av-init {
+      display: none;
+    }
+
+    .av-init {
+      font-family: 'Figtree', sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      color: #9C9994;
+    }
+
+    .site-name {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--hero-ink);
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-links a {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--hero-ink);
+      text-decoration: none;
+      transition: color 0.18s;
+      letter-spacing: 0.02em;
+      text-transform: lowercase;
+    }
+
+    .nav-links a:hover {
+      color: var(--hero-blue);
+    }
+
+    .nav-links a.active {
+      color: var(--hero-blue);
+    }
+
+    section {
+      scroll-margin-top: 92px;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: 16px;
+      top: 12px;
+      z-index: 200;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: var(--text);
+      color: #fff;
+      text-decoration: none;
+      font-family: 'Figtree', sans-serif;
+      font-size: 13px;
+      transform: translateY(-180%);
+      transition: transform 0.2s ease;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    main {
+      display: block;
+    }
+
+    .hero-stage {
+      position: relative;
+      z-index: 1;
+      flex: 1;
+      display: grid;
+      place-items: center;
+      padding: 48px 0 34px;
+    }
+
+    .hero-card {
+      position: relative;
+      width: min(100%, 980px);
+      margin: 0 auto;
+      background: #fffdf9;
+      border: 2px solid #6b7ff2;
+      box-shadow: 14px 14px 0 #2d53f4;
+      padding: 56px 58px 50px;
+    }
+
+    .hero-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(210px, 0.8fr);
+      gap: 28px;
+      align-items: center;
+      min-height: 430px;
+    }
+
+    .hero-copy {
+      max-width: 720px;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 14px;
+      margin-bottom: 28px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      font-weight: 600;
+      color: rgba(26, 23, 21, 0.72);
+      text-transform: lowercase;
+    }
+
+    .hero-meta span+span::before {
+      content: '—';
+      margin-right: 14px;
+      color: rgba(26, 23, 21, 0.36);
+    }
+
+    .hero-title {
+      max-width: 32ch;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: clamp(2.7rem, 4.8vw, 4.8rem);
+      line-height: 1.06;
+      letter-spacing: -0.06em;
+      font-weight: 600;
+      color: #2b2a28;
+    }
+
+    .hero-subcopy {
+      margin-top: 30px;
+      max-width: 42ch;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: clamp(1rem, 1.35vw, 1.1rem);
+      font-weight: 500;
+      line-height: 1.75;
+      color: rgba(43, 42, 40, 0.9);
+    }
+
+    .hero-aside {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+      padding-left: 22px;
+      border-left: 1px solid rgba(26, 23, 21, 0.08);
+    }
+
+    .hero-mark {
+      position: relative;
+      width: 180px;
+      height: 140px;
+      margin-top: 8px;
+    }
+
+    .hero-mark::before,
+    .hero-mark::after {
+      content: '';
+      position: absolute;
+      inset: 16px;
+      border: 2px solid var(--hero-blue);
+      border-radius: 24px;
+      transform: rotate(-7deg);
+      opacity: 0.8;
+    }
+
+    .hero-mark::after {
+      inset: 36px 22px 24px 0;
+      border-radius: 999px 54% 52% 999px;
+      transform: rotate(10deg);
+      border-width: 4px;
+      box-shadow:
+        10px -12px 0 -2px rgba(47, 91, 255, 0.18),
+        -8px 16px 0 -4px rgba(47, 91, 255, 0.14);
+    }
+
+    .hero-orbit {
+      position: absolute;
+      inset: 36px 20px auto auto;
+      width: 112px;
+      height: 112px;
+      border: 1.5px solid rgba(47, 91, 255, 0.7);
+    }
+
+    .hero-note {
+      align-self: flex-end;
+      margin-top: auto;
+      max-width: 180px;
+      font-family: 'Figtree', sans-serif;
+      font-size: 0.96rem;
+      line-height: 1.55;
+      color: rgba(26, 23, 21, 0.44);
+      text-align: left;
+    }
+
+    .hero-footer {
+      position: relative;
+      z-index: 1;
+      border-top: 2px solid rgba(26, 23, 21, 0.88);
+      padding: 18px 0 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: lowercase;
+      color: rgba(26, 23, 21, 0.82);
+    }
+
+    .hero-footer a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .hero-footer a:hover {
+      color: var(--hero-blue);
+    }
+
+    /* ── PROJECT CASE STUDIES ───────────── */
+    .projects {
+      padding: 12px 0 8px;
+    }
+
+    .projects .wrap {
+      max-width: none;
+      margin: 0 160px;
+      padding: 0;
+    }
+
+    .section-intro {
+      max-width: 72ch;
+      margin-bottom: 24px;
+    }
+
+    .section-kicker {
+      font-family: 'Figtree', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .section-intro h2 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      margin-bottom: 12px;
+    }
+
+    .section-summary {
+      font-family: 'Figtree', sans-serif;
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--muted);
+      max-width: 62ch;
+    }
+
+    .project-grid {
+      display: grid;
+      gap: 22px;
+    }
+
+    .project-card {
+      --card-accent: #d2e46a;
+      --visual-start: #fff2bf;
+      --visual-mid: #fff7dd;
+      --visual-end: #fffdf8;
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(360px, 1.15fr);
+      gap: 28px;
+      padding: 64px;
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at top left, rgba(255, 255, 255, 0.08), transparent 28%),
+        linear-gradient(145deg, #14181d 0%, #0f1216 100%);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      box-shadow: 0 24px 70px rgba(7, 10, 15, 0.20);
+      color: #f7f4ef;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.32s ease, opacity 0.36s ease;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      inset: auto -12% -35% auto;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0) 66%);
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .project-card:hover,
+    .project-card:focus-within {
+      transform: translateY(-4px);
+      box-shadow: 0 30px 80px rgba(7, 10, 15, 0.28);
+    }
+
+    .project-copy,
+    .project-visual {
+      position: relative;
+      z-index: 1;
+    }
+
+    .project-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 14px;
+      font-family: 'Figtree', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--card-accent);
+    }
+
+    .project-card h3 {
+      font-size: clamp(2rem, 4.2vw, 3.55rem);
+      line-height: 0.98;
+      letter-spacing: -0.05em;
+      margin-bottom: 14px;
+      color: #fffdf8;
+    }
+
+    .project-overview {
+      font-family: 'Figtree', sans-serif;
+      font-size: 1rem;
+      line-height: 1.8;
+      color: rgba(247, 244, 239, 0.88);
+      max-width: 62ch;
+      margin-bottom: 20px;
+    }
+
+    .project-block {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 20px;
+      padding: 18px;
+      margin-bottom: 16px;
+    }
+
+    .project-block h4,
+    .insight span {
+      font-family: 'Figtree', sans-serif;
+      font-size: 0.76rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--card-accent);
+      margin-bottom: 12px;
+    }
+
+    .feature-list {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+    }
+
+    .feature-list li {
+      position: relative;
+      padding-left: 18px;
+      font-family: 'Figtree', sans-serif;
+      font-size: 0.98rem;
+      line-height: 1.72;
+      color: rgba(247, 244, 239, 0.92);
+    }
+
+    .feature-list li::before {
+      content: '✦';
+      position: absolute;
+      left: 0;
+      top: 0.05em;
+      color: var(--card-accent);
+    }
+
+    .project-tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .project-accordion {
+      width: 100%;
+    }
+
+    .project-accordion summary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 34px;
+      padding: 0 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: rgba(255, 255, 255, 0.06);
+      color: #fffdf8;
+      font-family: 'Figtree', sans-serif;
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+      list-style: none;
+    }
+
+    .project-accordion summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .project-accordion summary::after {
+      content: '+';
+      margin-left: 8px;
+      font-size: 0.95rem;
+      line-height: 1;
+    }
+
+    .project-accordion[open] summary::after {
+      content: '−';
+    }
+
+    .project-accordion summary:hover,
+    .project-accordion summary:focus-visible {
+      transform: translateY(-1px);
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.24);
+    }
+
+    .accordion-content {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .insight {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 18px;
+      padding: 16px;
+    }
+
+    .insight p {
+      font-family: 'Figtree', sans-serif;
+      font-size: 0.95rem;
+      line-height: 1.72;
+      color: rgba(247, 244, 239, 0.87);
+    }
+
+    .project-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 0 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(255, 255, 255, 0.05);
+      color: #fffdf8;
+      font-family: 'Figtree', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      text-decoration: none;
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .project-link.primary {
+      background: var(--card-accent);
+      border-color: transparent;
+      color: #16191d;
+    }
+
+    .project-link:hover,
+    .project-link:focus-visible {
+      transform: translateY(-1px);
+      border-color: rgba(255, 255, 255, 0.34);
+    }
+
+    .project-link.primary:hover,
+    .project-link.primary:focus-visible {
+      color: #0f1216;
+    }
+
+    .project-visual {
+      border-radius: 22px;
+      background: linear-gradient(180deg, var(--visual-start) 0%, var(--visual-mid) 55%, var(--visual-end) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.42);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 420px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .project-visual::before {
+      content: '';
+      position: absolute;
+      inset: 18px;
+      border: 1px dashed rgba(22, 25, 29, 0.14);
+      border-radius: 18px;
+    }
+
+    .project-visual::after {
+      content: 'Image placeholder';
+      position: relative;
+      z-index: 1;
+      font-family: 'Figtree', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(22, 25, 29, 0.5);
+    }
+
+    .project-visual img,
+    .project-visual picture,
+    .project-visual svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      border-radius: inherit;
+      position: relative;
+      z-index: 1;
+    }
+
+    .project-visual.has-media::after {
+      content: '';
+    }
+
+    .project-visual.has-media {
+      padding: 0;
+    }
+
+    .project-visual.has-media::before {
+      display: none;
+    }
+
+    .project-visual .visual-stack {
+      display: none;
+    }
+
+
+    /* ── CLOSING STATEMENT ───────────────── */
+    .closing {
+      border-top: 1px solid var(--line);
+      padding: 40px 0 28px;
+      margin-top: 18px;
+    }
+
+    .closing p {
+      font-size: 1.05rem;
+      font-weight: 300;
+      line-height: 1.78;
+      color: var(--text);
+      max-width: 52ch;
+      margin-bottom: 18px;
+    }
+
+    .cta-tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 40px;
+      padding: 0 14px;
+      border: 1px solid #C8C5C2;
+      border-radius: 999px;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: background 0.18s, color 0.18s, border-color 0.18s;
+      font-family: 'Figtree', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 500;
+    }
+
+    .cta-tag:hover,
+    .cta-tag:focus-visible {
+      background: var(--text);
+      color: #fff;
+      border-color: var(--text);
+    }
+
+    /* ── FOOTER ──────────────────────────── */
+    footer {
+      padding: 24px 0 40px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-link {
+      font-family: 'Figtree', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--accent);
+      text-decoration: none;
+      transition: opacity 0.18s;
+    }
+
+    .footer-link:hover {
+      opacity: 0.58;
+    }
+
+    .footer-avail {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Figtree', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: var(--muted);
+      margin-left: auto;
+    }
+
+    .footer-avail .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      flex-shrink: 0;
+      animation: blink 2.6s ease-in-out infinite;
+    }
+
+    @keyframes blink {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.22;
+      }
+    }
+
+    .copyright {
+      font-family: 'Figtree', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: var(--muted);
+    }
+
+    /* ── RESPONSIVE ──────────────────────── */
+    @media (max-width: 820px) {
+      .hero-stage {
+        padding: 34px 0 28px;
+      }
+
+      .hero-title {
+        max-width: 16ch;
+      }
+
+      .hero-card {
+        width: calc(100% - 48px);
+        padding: 42px 34px 36px;
+      }
+
+      .hero-layout {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .hero-aside {
+        padding-left: 0;
+        padding-top: 22px;
+        border-left: 0;
+        border-top: 1px solid rgba(26, 23, 21, 0.08);
+        align-items: flex-start;
+      }
+
+      .projects .wrap {
+        margin: 0 40px;
+      }
+
+      .project-card {
+        grid-template-columns: 1fr;
+      }
+
+      .project-visual {
+        min-height: 300px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .wrap {
+        padding: 0 20px;
+      }
+
+      .projects .wrap {
+        margin: 0 20px;
+      }
+
+      .hero {
+        padding: 8px 8px 0;
+      }
+
+      .nav-inner {
+        padding: 18px 18px 14px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+      .nav-links {
+        gap: 18px;
+        flex-wrap: wrap;
+      }
+
+      .hero-stage {
+        padding: 20px 0 18px;
+      }
+
+      .hero-title {
+        max-width: none;
+        font-size: clamp(2.25rem, 12vw, 3.8rem);
+      }
+
+      .hero-subcopy {
+        max-width: none;
+      }
+
+      .hero-footer {
+        justify-content: center;
+        padding: 16px 18px 18px;
+      }
+
+      .hero-card {
+        width: calc(100% - 24px);
+        padding: 32px 22px 28px;
+      }
+
+      .hero-mark {
+        width: 150px;
+        height: 120px;
+      }
+
+      .hero-note {
+        max-width: 220px;
+      }
+
+      .section-intro {
+        margin-bottom: 18px;
+      }
+
+      .project-card {
+        padding: 20px;
+        border-radius: 22px;
+        gap: 18px;
+      }
+
+      .project-visual {
+        min-height: 260px;
+        padding: 16px;
+      }
+
+      .visual-stack {
+        min-height: 260px;
+      }
+
+      .footer-links {
+        gap: 14px;
+      }
+
+      .footer-avail {
+        margin-left: 0;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+
+      .project-card {
+        transform: none !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
-    <nav>
-        <div class="nav-content">
-            <div class="logo">TEMI</div>
-            <ul class="nav-links">
-                <li><a href="#work">Work</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><span class="status-dot"></span></li>
-            </ul>
-        </div>
-    </nav>
-
-    <section class="hero">
-        <div class="container">
-            <div class="hero-label">Hi there, I am Temi, a Product Designer</div>
-            <h1>
-                Crafting <br>
-                <span class="outline">digital products </span><br>
-                that actually work
-            </h1>
-            <p class="hero-description">
-                Product designer specializing in complex B2B platforms, fintech applications, and healthcare solutions
-                with a focus on clarity, usability, and systems that scale from zero to production.
-            </p>
-            <a href="#work" class="hero-cta">SEE MY WORK <span style="font-family: 'Comic Sans MS', cursive;">(use a
-                    laptop, please)</span> →</a>
-
-            <div class="hero-stats">
-                <div class="stat">
-                    <div class="stat-number">8+</div>
-                    <div class="stat-label">Projects Worked on</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">4+</div>
-                    <div class="stat-label">Years Experience</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">∞</div>
-                    <div class="stat-label">Coffee Consumed</div>
-                </div>
+  <a class="skip-link" href="#projects">Skip to projects</a>
+  <header class="hero" id="home">
+    <div class="hero-shell">
+      <nav aria-label="Primary">
+        <div class="nav-inner">
+          <div class="nav-left">
+            <div class="avatar" title="Add your photo here" aria-hidden="true">
+              <span class="av-init">T</span>
             </div>
+            <span class="site-name">Temi</span>
+          </div>
+          <ul class="nav-links">
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#projects">Work</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
         </div>
-    </section>
+      </nav>
 
-    <div class="marquee-section">
-        <div class="marquee">
-            <div class="marquee-content">
-                <span class="marquee-item">DESIGN</span>
-                <span class="marquee-item">★</span>
-                <span class="marquee-item">SYSTEMS</span>
-                <span class="marquee-item">★</span>
-                <span class="marquee-item">PRODUCT</span>
-                <span class="marquee-item">★</span>
-                <span class="marquee-item">UX/UI</span>
-                <span class="marquee-item">★</span>
+      <div class="hero-stage">
+        <div class="hero-card">
+          <div class="hero-layout">
+            <div class="hero-copy">
+              <h1 class="hero-title">Hi, I'm Temi, a product designer</h1>
+              <p class="hero-subcopy">I specialise in B2B SaaS, fintech, and healthcare, designing products that hold up
+                under real use from early research through to working shipped code.</p>
             </div>
-            <div class="marquee-content">
-                <span class="marquee-item">DESIGN</span>
-                <span class="marquee-item">★</span>
-                <span class="marquee-item">SYSTEMS</span>
-                <span class="marquee-item">★</span>
-                <span class="marquee-item">PRODUCT</span>
-                <span class="marquee-item">★</span>
-                <span class="marquee-item">UX/UI</span>
-                <span class="marquee-item">★</span>
-            </div>
+
+          </div>
         </div>
+      </div>
+
+      <div class="hero-footer">
+        <a href="#projects">Projects ↓</a>
+      </div>
     </div>
+  </header>
 
-    <section class="projects" id="work">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">SELECTED WORK</h2>
+  <main id="main">
+
+    <section class="projects" id="projects" aria-labelledby="projects-heading">
+      <div class="wrap">
+
+        <div class="project-grid">
+          <article class="project-card" aria-labelledby="manelens-title"
+            style="--card-accent:#c8e86a; --visual-start:#fff1c2; --visual-mid:#fff7df; --visual-end:#fffdf8;">
+            <div class="project-copy">
+              <p class="project-meta">B2B SaaS 2025</p>
+              <h3 id="manelens-title">Manelens</h3>
+              <p class="project-overview">Manelens is a dual-sided hair intelligence platform for consumers and salons.
+                I designed both products end-to-end, across two different user groups with different goals, workflows,
+                and levels of technical literacy.</p>
+              <div class="project-block">
+                <h4>What I Designed</h4>
+                <ul class="feature-list">
+                  <li>Consumer app onboarding, product and routine recommendations, and the Mane ID consent and sharing
+                    flow</li>
+                  <li>Salon SaaS dashboard with client CRM, appointment history, inventory analysis, training,
+                    certification, and an insight feed</li>
+                  <li>A consent system that lets consumers control exactly what professionals can see and act on</li>
+                </ul>
+                <div class="project-tools">
+                  <details class="project-accordion">
+                    <summary>Challenge + outcome</summary>
+                    <div class="accordion-content">
+                      <div class="insight">
+                        <span>Challenge</span>
+                        <p>The consent model had to feel empowering rather than extractive, while still supporting a
+                          shared-data experience across consumer and professional products.</p>
+                      </div>
+                      <div class="insight">
+                        <span>Outcome</span>
+                        <p>A scalable two-sided system designed to grow with both consumer adoption and professional
+                          network effects.</p>
+                      </div>
+                    </div>
+                  </details>
+                </div>
+              </div>
+              <div class="project-actions">
+                <a href="https://www.figma.com/design/CgokQfyyKY0dis4qTMkWX4/Manelens?node-id=1376-11028&t=TLD3Q6NoH2Q8JoDR-1"
+                  target="_blank" rel="noopener noreferrer" class="project-link primary">View design</a>
+              </div>
             </div>
+            <aside class="project-visual" aria-hidden="true">
+              <img src="./Business/manelens.png" alt="Manelens project screenshot">
+            </aside>
+          </article>
 
-            <div class="project-list">
-                <div class="project-item">
-                    <div class="project-header">
-                        <div class="project-number">00</div>
-                        <h3 class="project-title">JAPA</h3>
-                        <div class="project-year">2025</div>
+          <article class="project-card" aria-labelledby="orasis-title"
+            style="--card-accent:#f1b35c; --visual-start:#fff0d0; --visual-mid:#fff8ea; --visual-end:#fffefb;">
+            <div class="project-copy">
+              <p class="project-meta">Fintech AI 2025</p>
+              <h3 id="orasis-title">Orasis AI</h3>
+              <p class="project-overview">Designed the UI/UX for an AI-powered investment idea generation platform for
+                hedge funds and asset managers. The product surfaces and ranks opportunities daily while producing due
+                diligence documentation for each idea.</p>
+              <div class="project-block">
+                <h4>What I Designed</h4>
+                <ul class="feature-list">
+                  <li>An Alpha Ideas dashboard with a ranked feed of ten daily opportunities and thumbs up/down feedback
+                    that feeds the model</li>
+                  <li>A due diligence interface covering thesis, data sources, risk, transparency metrics, and
+                    compliance validation</li>
+                  <li>Interface patterns that make AI output understandable without flattening the complexity of the
+                    underlying analysis</li>
+                </ul>
+                <div class="project-tools">
+                  <details class="project-accordion">
+                    <summary>Challenge + outcome</summary>
+                    <div class="accordion-content">
+                      <div class="insight">
+                        <span>Challenge</span>
+                        <p>Institutional users need to trust how ideas are generated, not just what the recommendations
+                          are, so the design had to be transparent and auditable.</p>
+                      </div>
+                      <div class="insight">
+                        <span>Outcome</span>
+                        <p>Supports AI-driven research workflows without losing the analytical rigor required for
+                          internal and external due diligence.</p>
+                      </div>
                     </div>
-                    <p class="project-description">
-                        JAPA is a travel booking platform I designed and built end to end, taking it from early UX
-                        thinking and interface design through to frontend development and backend integration. I broke
-                        down complex travel experiences like package discovery, pricing logic, availability, trust
-                        signals, and booking states into a clear, conversion-focused user experience, then brought it to
-                        life using semantic HTML, scalable CSS architecture, and state-driven JavaScript. On the
-                        backend, I implemented authentication, data modeling, and real-time updates with Firebase to
-                        ensure the product was reliable, extensible, and ready for real users. This project reflects how
-                        I design with engineering realities in mind and enjoy shipping complete, working products rather
-                        than stopping at static designs.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">UI/UX Engineer</span>
-                        <span class="tag">Product Designer</span>
-                        <span class="tag">Frontend Engineering</span>
-                        <span class="tag">End-to-End Ownership</span>
-                        <span class="tag">Travel Tech</span>
-                        <span class="tag">Design-to-Code</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://japa-jade.vercel.app/"
-                            target="_blank" class="project-link primary">SEE LIVE LINK →</a>
-                    </div>
+                  </details>
                 </div>
-
-                <div class="project-item">
-                    <div class="project-header">
-                        <div class="project-number">01</div>
-                        <h3 class="project-title">Manelens</h3>
-                        <div class="project-year">2025</div>
-                    </div>
-                    <p class="project-description">
-                        Manelens is a dual-platform hair intelligence product with a consumer mobile app and a SaaS
-                        platform for salons and professional stylists. The mobile app helps users understand their hair
-                        and routines, while the salon platform provides CRM, training and certification, inventory &
-                        ingredient analysis, and curated industry insights. Built on consent-based data sharing via Mane
-                        ID, the system enables personalized professional care while keeping users in control of their
-                        data, showcasing my ability to design scalable, multi-sided SaaS products with science-driven
-                        UX.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">B2B SaaS</span>
-                        <span class="tag">Systems Design</span>
-                        <span class="tag">CRM</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://www.figma.com/design/CgokQfyyKY0dis4qTMkWX4/Manelens?node-id=1376-11028&t=TLD3Q6NoH2Q8JoDR-1"
-                            target="_blank" class="project-link primary">VIEW DESIGN →</a>
-                    </div>
-                </div>
-
-                <div class="project-item">
-                    <div class="project-header">
-                        <div class="project-number">02</div>
-                        <h3 class="project-title">Carebrij</h3>
-                        <div class="project-year">2025</div>
-                    </div>
-                    <p class="project-description">
-                        Healthcare marketplace connecting patients with medical professionals. Designed end-to-end
-                        booking experience,
-                        provider profiles, and service discovery system.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">Healthcare</span>
-                        <span class="tag">Marketplace</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://www.figma.com/design/96XOxoXd8duFbj0zJGbAIe/Carebrij-Healthcare-Marketplace?node-id=0-1"
-                            target="_blank" class="project-link primary">VIEW DESIGN →</a>
-                    </div>
-                </div>
-
-                <div class="project-item">
-                    <div class="project-header">
-                        <div class="project-number">03</div>
-                        <h3 class="project-title">FlurryPay</h3>
-                        <div class="project-year">2024</div>
-                    </div>
-                    <p class="project-description">
-                        Crypto wallet and exchange app focused on simplicity. Made blockchain accessible for beginners
-                        while
-                        maintaining power user features. Buy, sell, swap, and earn digital assets with confidence.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">Fintech</span>
-                        <span class="tag">Crypto</span>
-                        <span class="tag">Mobile</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://www.figma.com/design/6xd6awF0VJbOTRRrxGuLEL/FlurryPay?node-id=488-6929"
-                            target="_blank" class="project-link primary">VIEW DESIGN →</a>
-                    </div>
-                </div>
-
-                <div class="project-item">
-                    <div class="project-header">
-                        <div class="project-number">04</div>
-                        <h3 class="project-title">NACOS Payment</h3>
-                        <div class="project-year">2024</div>
-                    </div>
-                    <p class="project-description">
-                        Complete redesign of university dues payment system. Live in production at FUNAAB,
-                        serving thousands of students with faster, clearer payment flow.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">Education</span>
-                        <span class="tag">Live Product</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://nacosfunaab.com.ng/" target="_blank" class="project-link primary">LIVE SITE
-                            →</a>
-                        <a href="https://www.figma.com/design/5tmiMrAdHrbqbqkW87qFcW/NACOS-Payment-Form-Redesign-FUNAAB"
-                            target="_blank" class="project-link">DESIGN FILES</a>
-                    </div>
-                </div>
-
-                <div class="project-item">
-                    <div class="project-header">
-                        <div class="project-number">05</div>
-                        <h3 class="project-title">FlexQuest</h3>
-                        <div class="project-year">2024</div>
-                    </div>
-                    <p class="project-description">
-                        Fitness tracking app with social challenges and gamification. Built during Geegpay hackathon.
-                        Won for best design execution and user experience. This mini project won me the
-                        Geegpay-sponsored Hackathon by David Herbert on Twitter. And I really had fun working on this
-                        mini-project
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag award">🏆 HACKATHON WINNER</span>
-                        <span class="tag">Fitness</span>
-                        <span class="tag">Mobile</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://www.figma.com/design/Z0bclICnvpsJeBNzYI6CPn/FlexQuest" target="_blank"
-                            class="project-link primary">VIEW DESIGN →</a>
-                        <a href="https://x.com/DaveyHert/status/1754477068656464297" target="_blank"
-                            class="project-link">PROOF</a>
-                    </div>
-                </div>
-
-                <div class="project-item">
-                    <div class="project-header">
-                        <div class="project-number">06</div>
-                        <h3 class="project-title">Employee Attendance</h3>
-                        <div class="project-year">2024</div>
-                    </div>
-                    <p class="project-description">
-                        Role-based management system for tracking employee attendance and records.
-                        Designed for scalability with enterprise-friendly patterns.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">Enterprise</span>
-                        <span class="tag">Dashboard</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://www.figma.com/design/o11NTLOIqEzOJg6OuyZ5n8/Employee-Attendance-Management-System"
-                            target="_blank" class="project-link primary">VIEW DESIGN →</a>
-                    </div>
-                </div>
-
-                <div class="project-item">
-                    <div class="project-header">
-                        <div class="project-number">07</div>
-                        <h3 class="project-title">More Work</h3>
-                        <div class="project-year">2023-24</div>
-                    </div>
-                    <p class="project-description">
-                        Collection of side projects, explorations, and experiments. From NerveCen business suite
-                        to various UI concepts and design challenges.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">Experiments</span>
-                        <span class="tag">Various</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://www.figma.com/file/UB2yUW93G4ldGXriwL59w3/SM-UI-Design-Files" target="_blank"
-                            class="project-link primary">VIEW COLLECTION →</a>
-                    </div>
-                </div>
+              </div>
+              <div class="project-actions">
+                <a href="https://www.figma.com/design/R6SWfjwcRQ70jh0hWPLpYx/Orasis-AI?node-id=0-1&t=7wVvtlmFIdGB99ly-1"
+                  target="_blank" rel="noopener noreferrer" class="project-link primary">View design</a>
+              </div>
             </div>
+            <aside class="project-visual" aria-hidden="true">
+              <img src="./Business/orasis.png" alt="Orasis project screenshot">
+            </aside>
+          </article>
+
+          <article class="project-card" aria-labelledby="carebrij-title"
+            style="--card-accent:#72d0ff; --visual-start:#fff0e8; --visual-mid:#fff8f2; --visual-end:#fffefc;">
+            <div class="project-copy">
+              <p class="project-meta">Healthcare Marketplace 2025</p>
+              <h3 id="carebrij-title">Carebrij</h3>
+              <p class="project-overview">Carebrij connects patients with medical professionals across specialties. I
+                designed the booking experience, provider profile system, and service discovery flow from the moment
+                someone searches to the moment their appointment is confirmed.</p>
+              <div class="project-block">
+                <h4>What I Designed</h4>
+                <ul class="feature-list">
+                  <li>Provider profiles with credential display, specialty-specific services, availability, and patient
+                    reviews</li>
+                  <li>A booking flow with appointment type selection, intake questions, and confirmation states with
+                    clear next steps</li>
+                  <li>Service discovery built around symptoms and conditions instead of specialty codes</li>
+                </ul>
+                <div class="project-tools">
+                  <details class="project-accordion">
+                    <summary>Challenge + outcome</summary>
+                    <div class="accordion-content">
+                      <div class="insight">
+                        <span>Challenge</span>
+                        <p>Healthcare marketplaces fail when patients cannot confidently evaluate providers they have
+                          never heard of, so trust had to be visible throughout the flow.</p>
+                      </div>
+                      <div class="insight">
+                        <span>Outcome</span>
+                        <p>Reduced the decision friction between discovery and booking by making the experience feel
+                          closer to a trusted recommendation.</p>
+                      </div>
+                    </div>
+                  </details>
+                </div>
+              </div>
+              <div class="project-actions">
+                <a href="https://www.figma.com/design/96XOxoXd8duFbj0zJGbAIe/Carebrij-Healthcare-Marketplace?node-id=0-1"
+                  target="_blank" rel="noopener noreferrer" class="project-link primary">View design</a>
+              </div>
+            </div>
+            <aside class="project-visual" aria-hidden="true">
+              <img src="./Business/carebrij.png" alt="Carebrij project screenshot">
+            </aside>
+          </article>
+
+          <article class="project-card" aria-labelledby="flurrypay-title"
+            style="--card-accent:#74d7b4; --visual-start:#fff4d7; --visual-mid:#fffaf1; --visual-end:#fffefb;">
+            <div class="project-copy">
+              <p class="project-meta">Mobile Fintech 2024</p>
+              <h3 id="flurrypay-title">FlurryPay</h3>
+              <p class="project-overview">FlurryPay is a crypto wallet and exchange app designed to make digital assets
+                accessible without dumbing them down. I designed the iOS experience across onboarding, core
+                transactions, portfolio views, and earn features.</p>
+              <div class="project-block">
+                <h4>What I Designed</h4>
+                <ul class="feature-list">
+                  <li>Onboarding with identity verification, wallet setup, and first-time education that introduces
+                    concepts progressively</li>
+                  <li>Buy, sell, swap, and earn flows with clear confirmation states to prevent costly mistakes</li>
+                  <li>A portfolio dashboard calibrated for both first-time users and experienced traders on the same
+                    screen</li>
+                </ul>
+                <div class="project-tools">
+                  <details class="project-accordion">
+                    <summary>Challenge + outcome</summary>
+                    <div class="accordion-content">
+                      <div class="insight">
+                        <span>Challenge</span>
+                        <p>The product had to work for someone buying their first asset and someone managing a
+                          multi-asset portfolio without forcing either user into the wrong level of detail.</p>
+                      </div>
+                      <div class="insight">
+                        <span>Outcome</span>
+                        <p>A mobile experience where first-time buyers are not lost and experienced traders are not
+                          slowed down.</p>
+                      </div>
+                    </div>
+                  </details>
+                </div>
+              </div>
+              <div class="project-actions">
+                <a href="https://www.figma.com/design/6xd6awF0VJbOTRRrxGuLEL/FlurryPay?node-id=488-6929" target="_blank"
+                  rel="noopener noreferrer" class="project-link primary">View design</a>
+              </div>
+            </div>
+            <aside class="project-visual" aria-hidden="true">
+              <img src="./Business/flurrypay.png" alt="FlurryPay project screenshot">
+            </aside>
+          </article>
+
+          <article class="project-card" aria-labelledby="japa-title"
+            style="--card-accent:#f4c96f; --visual-start:#fff0d7; --visual-mid:#fff7e7; --visual-end:#fffefc;">
+            <div class="project-copy">
+              <p class="project-meta">Travel Full-stack 2025</p>
+              <h3 id="japa-title">JAPA</h3>
+              <p class="project-overview">JAPA is a travel booking platform I designed and built end-to-end, from UX
+                research and information architecture through front-end implementation and Firebase backend integration.
+                It shipped and runs in production.</p>
+              <div class="project-block">
+                <h4>What I Designed</h4>
+                <ul class="feature-list">
+                  <li>Package discovery with browsing, filtering, real availability, and pricing transparency</li>
+                  <li>A multi-step booking flow with state management and error recovery at each stage</li>
+                  <li>Trust signals like provider credentials, traveller reviews, and policy clarity</li>
+                </ul>
+                <div class="project-tools">
+                  <details class="project-accordion">
+                    <summary>Challenge + outcome</summary>
+                    <div class="accordion-content">
+                      <div class="insight">
+                        <span>Challenge</span>
+                        <p>Travel booking needed variable pricing, availability windows, and trust signals that could
+                          handle real implementation constraints rather than abstract layouts.</p>
+                      </div>
+                      <div class="insight">
+                        <span>Outcome</span>
+                        <p>A live product that shows full-cycle capability from blank canvas to deployed application.
+                        </p>
+                      </div>
+                    </div>
+                  </details>
+                </div>
+              </div>
+              <div class="project-actions">
+                <a href="https://japa-jade.vercel.app/" target="_blank" rel="noopener noreferrer"
+                  class="project-link primary">View live</a>
+              </div>
+            </div>
+            <aside class="project-visual" aria-hidden="true">
+              <img src="./Business/japa.png" alt="Japa project screenshot">
+            </aside>
+          </article>
+
+          <article class="project-card" aria-labelledby="nacos-title"
+            style="--card-accent:#ff978f; --visual-start:#fff0dc; --visual-mid:#fff7ef; --visual-end:#fffefc;">
+            <div class="project-copy">
+              <p class="project-meta">Education Live Product 2024</p>
+              <h3 id="nacos-title">NACOS Payment</h3>
+              <p class="project-overview">Redesigned the dues payment system for NACOS FUNAAB, now live and processing
+                payments for thousands of students. The redesign focused on eliminating confusion in the payment flow
+                and fixing error states that caused retries.</p>
+              <div class="project-block">
+                <h4>What I Designed</h4>
+                <ul class="feature-list">
+                  <li>A simplified multi-step payment flow with clear progress indicators and inline validation</li>
+                  <li>Error handling with specific, actionable messages instead of generic failures</li>
+                  <li>Confirmation and receipt states that give students confidence the transaction went through</li>
+                </ul>
+                <div class="project-tools">
+                  <details class="project-accordion">
+                    <summary>Challenge + outcome</summary>
+                    <div class="accordion-content">
+                      <div class="insight">
+                        <span>Challenge</span>
+                        <p>The existing system was creating double payments and abandonments because students could not
+                          tell if a transaction had succeeded.</p>
+                      </div>
+                      <div class="insight">
+                        <span>Outcome</span>
+                        <p>Directly reduced confusion-related support queries around payment completion.</p>
+                      </div>
+                    </div>
+                  </details>
+                </div>
+              </div>
+              <div class="project-actions">
+                <a href="https://nacosfunaab.com.ng/" target="_blank" rel="noopener noreferrer"
+                  class="project-link primary">Live site</a>
+                <a href="https://www.figma.com/design/5tmiMrAdHrbqbqkW87qFcW/NACOS-Payment-Form-Redesign-FUNAAB"
+                  target="_blank" rel="noopener noreferrer" class="project-link">Design files</a>
+              </div>
+            </div>
+            <aside class="project-visual" aria-hidden="true">
+              <img src="./Business/nacos.png" alt="NACOS project screenshot">
+            </aside>
+          </article>
+
+          <article class="project-card" aria-labelledby="flexquest-title"
+            style="--card-accent:#e7b2ff; --visual-start:#fff3dd; --visual-mid:#fff8f2; --visual-end:#fffefc;">
+            <div class="project-copy">
+              <p class="project-meta">Mobile Fitness 2024</p>
+              <h3 id="flexquest-title">FlexQuest</h3>
+              <p class="project-overview">FlexQuest is a fitness tracking app with social challenges and gamification,
+                designed and shipped during the Geegpay hackathon. It won best design execution and user experience.</p>
+              <div class="project-block">
+                <h4>What I Designed</h4>
+                <ul class="feature-list">
+                  <li>Social fitness challenges with join, progress, and completion states that emphasize participation
+                    over ranking</li>
+                  <li>Activity tracking, workout logging, streak display, and progress visualization</li>
+                  <li>A social feed that reads as support rather than comparison</li>
+                </ul>
+                <div class="project-tools">
+                  <details class="project-accordion">
+                    <summary>Challenge + outcome</summary>
+                    <div class="accordion-content">
+                      <div class="insight">
+                        <span>Challenge</span>
+                        <p>Fitness apps with social features can make people feel judged, so the accountability system
+                          had to feel motivating rather than punishing.</p>
+                      </div>
+                      <div class="insight">
+                        <span>Outcome</span>
+                        <p>Won best design execution at the hackathon and proved that interaction detail changes how
+                          social products feel.</p>
+                      </div>
+                    </div>
+                  </details>
+                </div>
+              </div>
+              <div class="project-actions">
+                <a href="https://www.figma.com/design/Z0bclICnvpsJeBNzYI6CPn/FlexQuest" target="_blank"
+                  rel="noopener noreferrer" class="project-link primary">View design</a>
+                <a href="https://x.com/DaveyHert/status/1754477068656464297" target="_blank" rel="noopener noreferrer"
+                  class="project-link">Proof</a>
+              </div>
+            </div>
+            <aside class="project-visual" aria-hidden="true">
+              <img src="./Business/flexquest-1.png" alt="Flexquest project screenshot">
+            </aside>
+          </article>
+
+          <article class="project-card" aria-labelledby="attendance-title"
+            style="--card-accent:#9de3ff; --visual-start:#fff1df; --visual-mid:#fff7f0; --visual-end:#fffefc;">
+            <div class="project-copy">
+              <p class="project-meta">Enterprise Dashboard 2024</p>
+              <h3 id="attendance-title">Roosta</h3>
+              <p class="project-overview">A role-based attendance tracking and records management system for enterprise
+                teams. I designed the product across two primary roles: managers who need to act quickly, and employees
+                who need to understand their records without escalating to HR.</p>
+              <div class="project-block">
+                <h4>What I Designed</h4>
+                <ul class="feature-list">
+                  <li>A manager dashboard with attendance overviews, exception flagging, approvals, and reporting views
+                  </li>
+                  <li>An employee view for personal attendance, leave balances, and self-service request submission</li>
+                  <li>A shared component system that keeps role-based interfaces consistent as the product scales</li>
+                </ul>
+                <div class="project-tools">
+                  <details class="project-accordion">
+                    <summary>Challenge + outcome</summary>
+                    <div class="accordion-content">
+                      <div class="insight">
+                        <span>Challenge</span>
+                        <p>Enterprise HR tools tend to accumulate features until the interface becomes the problem, so
+                          the design had to surface only what each role needed.</p>
+                      </div>
+                      <div class="insight">
+                        <span>Outcome</span>
+                        <p>A scalable system where each user type can operate independently without requiring training
+                          or tribal knowledge.</p>
+                      </div>
+                    </div>
+                  </details>
+                </div>
+              </div>
+              <div class="project-actions">
+                <a href="https://www.figma.com/design/o11NTLOIqEzOJg6OuyZ5n8/Employee-Attendance-Management-System"
+                  target="_blank" rel="noopener noreferrer" class="project-link primary">View design</a>
+              </div>
+            </div>
+            <aside class="project-visual" aria-hidden="true">
+              <img src="./Business/roosta.png" alt="Roosta project screenshot">
+            </aside>
+          </article>
         </div>
+      </div>
     </section>
 
-    <section class="contact" id="contact">
-        <div class="container">
-            <div class="contact-content">
-                <h2>
-                    LET'S MAKE<br>
-                    SOMETHING<br>
-                    GREAT
-                </h2>
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <div class="contact-label">Email</div>
-                        <a href="mailto:akinbotetemiloluwa9@gmail.com"
-                            class="contact-value">akinbotetemiloluwa9@gmail.com</a>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-label">Phone</div>
-                        <a href="tel:07014016009" class="contact-value">070 1401 6009</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <section class="closing">
+      <div class="wrap">
+        <p>I design products for teams building difficult things, especially SaaS platforms, fintech apps, and
+          healthcare tools. I care about clarity, systems, and shipping.</p>
+        <a href="https://wa.me/2347014016009" target="_blank" rel="noopener noreferrer" class="cta-tag">Get in touch</a>
+      </div>
     </section>
+  </main>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-text">© 2026 TEMI — PRODUCT DESIGNER</div>
-            <div class="footer-links">
-                <a href="#work">Work</a>
-                <a href="#contact">Contact</a>
-            </div>
+  <footer id="contact">
+    <div class="wrap">
+      <div class="footer-links">
+        <a href="mailto:akinbotetemiloluwa9@gmail.com" class="footer-link">Email</a>
+        <a href="https://wa.me/2347014016009" target="_blank" rel="noopener noreferrer" class="footer-link">WhatsApp</a>
+        <div class="footer-avail">
+          <span class="dot"></span>
+          Open to work
         </div>
-    </footer>
+      </div>
+      <p class="copyright">© Temi 2026 All Rights Reserved</p>
+    </div>
+  </footer>
 
-    <script>
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
+  <script>
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    document.querySelectorAll('.project-visual').forEach((visual) => {
+      if (visual.querySelector('img, picture, svg')) {
+        visual.classList.add('has-media');
+      }
+    });
+
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener('click', (event) => {
+        const targetId = anchor.getAttribute('href');
+        if (!targetId || targetId === '#') return;
+
+        const target = document.querySelector(targetId);
+        if (!target) return;
+
+        event.preventDefault();
+        target.scrollIntoView({
+          behavior: prefersReducedMotion ? 'auto' : 'smooth',
+          block: 'start'
         });
+      });
+    });
 
-        // Project hover effect
-        const projectItems = document.querySelectorAll('.project-item');
-        projectItems.forEach(item => {
-            item.addEventListener('mouseenter', function () {
-                this.style.transform = 'translateX(10px)';
-            });
-            item.addEventListener('mouseleave', function () {
-                this.style.transform = 'translateX(0)';
-            });
+    if (!prefersReducedMotion) {
+      const cards = Array.from(document.querySelectorAll('.project-card'));
+
+      const observer = new IntersectionObserver((entries, io) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+          entry.target.addEventListener('transitionend', () => {
+            entry.target.style.transitionDelay = '';
+          }, { once: true });
+          io.unobserve(entry.target);
         });
+      }, {
+        threshold: 0.12,
+        rootMargin: '0px 0px -80px 0px'
+      });
 
-        // Intersection observer for fade-in
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        projectItems.forEach((item, index) => {
-            item.style.opacity = '0';
-            item.style.transform = 'translateY(30px)';
-            item.style.transition = `all 0.6s ease ${index * 0.1}s`;
-            observer.observe(item);
-        });
-
-        // Nav background on scroll
-        let lastScroll = 0;
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            const currentScroll = window.pageYOffset;
-
-            if (currentScroll > 100) {
-                nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
-            } else {
-                nav.style.boxShadow = 'none';
-            }
-
-            lastScroll = currentScroll;
-        });
-    </script>
+      cards.forEach((card, index) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(18px)';
+        card.style.transitionDelay = `${index * 70}ms`;
+        observer.observe(card);
+      });
+    }
+  </script>
 </body>
 
 </html>
